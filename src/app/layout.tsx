@@ -26,7 +26,7 @@ type RootLayoutPropTypes = {
 
 export default function RootLayout({ children }: RootLayoutPropTypes) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <head>
         <title>{HTML_TITLE}</title>
         <meta property="og:title" content={HTML_TITLE}></meta>
@@ -36,7 +36,7 @@ export default function RootLayout({ children }: RootLayoutPropTypes) {
         <meta property="og:site_name" content="YouthPay"></meta>
         <meta name="keywords" content={HTML_META_KEYWORDS} />
       </head>
-      <body className={`${inter.className} bg-surface-bg text-text-primary min-h-screen`}>
+      <body className={`${inter.className} bg-surface-bg text-text-primary min-h-dvh h-full flex flex-col`}>
         <ReactQueryProvider>
           <ThemeProvider theme={theme}>
             <StyledComponentsRegistry>
@@ -44,7 +44,9 @@ export default function RootLayout({ children }: RootLayoutPropTypes) {
               <ErrorBoundary>
                 <SkipToMainContent href="#main">Skip to main content</SkipToMainContent>
                 <GlobalStore>
-                  <Main>{children}</Main>
+                  <Main id="main" className="flex-1 min-h-dvh w-full flex flex-col">
+                    {children}
+                  </Main>
                 </GlobalStore>
               </ErrorBoundary>
             </StyledComponentsRegistry>

@@ -12,11 +12,7 @@ export default function WelcomeScreen() {
   }, []);
 
   return (
-    <div className="relative overflow-hidden">
-      <div className="absolute w-[200px] h-[200px] rounded-full bg-primary opacity-10 blur-3xl pointer-events-none -top-10 -left-10" />
-      <div className="absolute w-[150px] h-[150px] rounded-full bg-accent opacity-10 blur-3xl pointer-events-none bottom-0 right-0" />
-      <div className="absolute w-[180px] h-[180px] rounded-full bg-primary-light opacity-10 blur-3xl pointer-events-none top-1/3 right-10" />
-
+    <div>
       <div className="text-center mb-8">
         <span className="text-white font-bold text-3xl">Youth</span>
         <span className="text-accent font-bold text-3xl">Pay</span>

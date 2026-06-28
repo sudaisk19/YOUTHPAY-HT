@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
+import AuthBackground from '@/components/auth/AuthBackground';
 
 export default function AuthLayout({
   children,
@@ -22,8 +23,11 @@ export default function AuthLayout({
   }, [router, pathname]);
 
   return (
-    <div className="min-h-screen bg-surface-bg flex items-center justify-center px-6 py-12">
-      <div className="w-full max-w-[440px] mx-auto">{children}</div>
-    </div>
+    <>
+      <AuthBackground />
+      <div className="relative z-10 flex min-h-dvh min-h-screen w-full items-center justify-center px-6 py-12">
+        <div className="w-full max-w-[440px] mx-auto">{children}</div>
+      </div>
+    </>
   );
 }

@@ -32,7 +32,7 @@ export default function SuccessScreen() {
   }, [count, router]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-6 text-center">
+    <div className="flex-1 min-h-dvh w-full flex flex-col items-center justify-center gap-6 text-center px-6">
       <div className="relative">
         <svg viewBox="0 0 80 80" className="w-20 h-20">
           <circle

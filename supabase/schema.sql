@@ -18,6 +18,14 @@ CREATE TABLE IF NOT EXISTS users (
   created_at         timestamptz DEFAULT now()
 );
 
+CREATE TABLE IF NOT EXISTS categories (
+  id          uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  name        text UNIQUE NOT NULL,
+  color_hex   varchar(7) NOT NULL,
+  icon        text NOT NULL,
+  sort_order  int NOT NULL DEFAULT 0
+);
+
 CREATE TABLE IF NOT EXISTS transactions (
   id             uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id        uuid REFERENCES users(id) ON DELETE CASCADE,
@@ -34,11 +42,6 @@ CREATE TABLE IF NOT EXISTS transactions (
   is_duplicate   boolean DEFAULT false,
   raw_text       text,
   created_at     timestamptz DEFAULT now()
-);
-
-CREATE TABLE IF NOT EXISTS categories (
-  id   uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  name text UNIQUE NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS insights_cache (
@@ -82,12 +85,22 @@ INSERT INTO users (
   )
 ON CONFLICT (email) DO NOTHING;
 
--- Seed categories
-INSERT INTO categories (name) VALUES
-  ('Food'), ('Transport'), ('Lifestyle'), ('Utilities'),
-  ('Beauty'), ('Education'), ('Entertainment'), ('Coffee'),
-  ('Allowance'), ('Other')
-ON CONFLICT (name) DO NOTHING;
+-- Seed categories (colors match YouthPay theme)
+INSERT INTO categories (name, color_hex, icon, sort_order) VALUES
+  ('Food',          '#FF4C4C', 'food',          1),
+  ('Transport',     '#FFAB00', 'transport',     2),
+  ('Lifestyle',     '#A8E63D', 'lifestyle',     3),
+  ('Utilities',     '#2DD4BF', 'utilities',     4),
+  ('Beauty',        '#8B5CF6', 'beauty',        5),
+  ('Education',     '#5B4CF5', 'education',     6),
+  ('Entertainment', '#7B6CF7', 'entertainment', 7),
+  ('Coffee',        '#F59E0B', 'coffee',        8),
+  ('Allowance',     '#34D399', 'allowance',     9),
+  ('Other',         '#888780', 'other',         10)
+ON CONFLICT (name) DO UPDATE SET
+  color_hex  = EXCLUDED.color_hex,
+  icon       = EXCLUDED.icon,
+  sort_order = EXCLUDED.sort_order;
 
 -- Duplicate detection trigger
 CREATE OR REPLACE FUNCTION flag_duplicate_transactions()

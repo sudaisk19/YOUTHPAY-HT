@@ -10,8 +10,10 @@
   <img src="https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white" alt="Python 3.12" />
   <img src="https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white" alt="FastAPI" />
   <img src="https://img.shields.io/badge/Supabase-3ECF8E?logo=supabase&logoColor=white" alt="Supabase" />
-  <img src="https://img.shields.io/badge/Gemini-1.5_Flash-4285F4?logo=google&logoColor=white" alt="Gemini" />
+  <img src="https://img.shields.io/badge/Gemini-2.5_Flash-4285F4?logo=google&logoColor=white" alt="Gemini" />
 </p>
+
+> **Before running the frontend:** start the AI backend on Render first (free tier sleeps when idle). Open the [Render service dashboard](https://dashboard.render.com/web/srv-d90h6hmgvqtc739hc2ag/deploys/dep-d90h6i6gvqtc739hc320), confirm the latest deploy is **Live**, and wait until `/health` responds — then run `npm run dev`. Parsing and insights need this service; the UI alone is not enough.
 
 ---
 
@@ -85,6 +87,12 @@ How the two parts combine, plus the main user flows: logging in, parsing a messa
 
 ![YouthPay application flow](./application-flow.png)
 
+### Database ERD — Supabase Postgres schema
+
+Tables, columns, foreign keys, and relationships (`users`, `transactions`, `categories`, `insights_cache`).
+
+![YouthPay database ERD](./database-erd.png)
+
 <details>
 <summary><strong>Editing the diagrams (click to expand)</strong></summary>
 
@@ -95,6 +103,7 @@ The editable sources live alongside the images in the repo root:
 | System architecture | [`application-architecture.drawio`](./application-architecture.drawio) | [`application-architecture.png`](./application-architecture.png) |
 | AI service | [`ai-service-architecture.drawio`](./ai-service-architecture.drawio) | [`ai-service-architecture.png`](./ai-service-architecture.png) |
 | Application flow | [`application-flow.drawio`](./application-flow.drawio) | [`application-flow.png`](./application-flow.png) |
+| Database ERD | [`database-erd.drawio`](./database-erd.drawio) | [`database-erd.png`](./database-erd.png) |
 
 - **VS Code / Cursor:** install the [Draw.io Integration](https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio) extension and open any `.drawio` file inline.
 - **Web:** open the `.drawio` file at [diagrams.net](https://app.diagrams.net) (File → Open from → Device).
@@ -135,7 +144,7 @@ See [`application-flow.drawio`](./application-flow.drawio) for step-by-step flow
 | Auth | Custom JWT + bcrypt | `yp_token` cookie; teen / parent roles |
 | Database | Supabase (Postgres only) | Users, transactions, insights cache |
 | AI service | Python 3.12, FastAPI, uvicorn | Parse + insights endpoints |
-| LLM | Google Gemini 1.5 Flash | Roman Urdu parsing fallback + insight cards |
+| LLM | Google Gemini 2.5 Flash | Roman Urdu parsing fallback + insight cards |
 | Deploy | Vercel + Render | Frontend + AI microservice |
 
 ---
@@ -232,7 +241,17 @@ cp .env.example .env.local
 
 Fill in Supabase URL/keys and `JWT_SECRET`. Apply [`supabase/schema.sql`](./supabase/schema.sql) in the Supabase SQL editor.
 
-### 2. Frontend
+### 2. Start the AI backend (Render)
+
+Before starting the frontend, wake the deployed AI service:
+
+1. Open the [Render service dashboard](https://dashboard.render.com/web/srv-d90h6hmgvqtc739hc2ag/deploys/dep-d90h6i6gvqtc739hc320).
+2. Confirm the latest deploy status is **Live** (free tier may take 30–60s to wake after idle).
+3. Ensure `PARSER_API_URL` in `.env.local` points to your Render service URL.
+
+For local AI development instead, see [step 4 below](#4-ai-service-local-optional).
+
+### 3. Frontend
 
 ```bash
 npm install
@@ -241,7 +260,7 @@ npm run dev
 
 App runs at **http://localhost:3000**
 
-### 3. AI service
+### 4. AI service (local, optional)
 
 ```bash
 cd ai-service
@@ -255,7 +274,7 @@ python main.py
 
 AI service runs at **http://localhost:8000** — verify with `curl http://localhost:8000/health`
 
-### 4. Run tests (AI service)
+### 5. Run tests (AI service)
 
 ```bash
 cd ai-service && source .venv/bin/activate
