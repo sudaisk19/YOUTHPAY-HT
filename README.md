@@ -13,7 +13,7 @@
   <img src="https://img.shields.io/badge/Gemini-2.5_Flash-4285F4?logo=google&logoColor=white" alt="Gemini" />
 </p>
 
-> **Before running the frontend:** start the AI backend on Render first (free tier sleeps when idle). Open the [AI backend service just click on it](https://youthpay-ht.onrender.com), confirm the latest deploy is **Live**, and wait until `/health` responds — then run `npm run dev`. Parsing and insights need this service; the UI alone is not enough.
+> **Before running the frontend:** start the AI backend on Render first (free tier sleeps when idle). Open the [AI backend service](https://youthpay-ht.onrender.com), confirm the latest deploy is **Live**, and wait until `/health` responds 
 
 ---
 
