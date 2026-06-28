@@ -336,28 +336,6 @@ Parent login resolves to Sudais's transaction data via `users.parent_id`.
 
 ---
 
-## Environment variables
-
-### `.env.local` (Next.js / Vercel)
-
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `NEXT_PUBLIC_SUPABASE_URL` | Yes | Supabase project URL |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Yes | Supabase anon key |
-| `SUPABASE_SERVICE_ROLE_KEY` | Yes | Server-side DB access |
-| `JWT_SECRET` | Yes | JWT signing secret (32+ chars in prod) |
-| `PARSER_API_URL` | Yes | Render AI URL or `http://localhost:8000` |
-| `NEXT_PUBLIC_APP_URL` | Optional | Reserved for absolute URLs |
-
-### `ai-service/.env` (Render)
-
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `GEMINI_API_KEY` | Yes | Google Gemini API key |
-| `PORT` | Auto | Set by Render at runtime |
-
----
-
 <p align="center">
   <sub>Built for Pakistani teens · Regex + Gemini · Vercel + Render + Supabase</sub>
 </p>
