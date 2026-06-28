@@ -1,0 +1,68 @@
+import { SimulatedEmail } from '@/lib/types';
+
+export const SIMULATED_EMAILS: SimulatedEmail[] = [
+  {
+    id: 'email-1',
+    sender: 'alerts@jazzcash.com.pk',
+    subject: 'JazzCash Transaction Alert',
+    body: 'Your JazzCash account has been debited PKR 1,596 at KFC DHA on 01-Jun-2026 at 3:42 PM. Available balance: PKR 8,404.',
+    timestamp: '2026-06-01T15:42:00',
+    parsed: false,
+  },
+  {
+    id: 'email-2',
+    sender: 'alerts@meezanbank.com',
+    subject: 'Meezan Bank Credit Alert',
+    body: 'PKR 10,000 credited to your Meezan account from Pocket Money on 01-Jun-2026.',
+    timestamp: '2026-06-01T09:00:00',
+    parsed: false,
+  },
+  {
+    id: 'email-3',
+    sender: 'noreply@hbl.com',
+    subject: 'HBL Account Transaction',
+    body: 'Apkay HBL account se PKR 521 ka transaction hua hai inDrive ko 03-Jun-2026 ko. Baqi balance: PKR 7,883.',
+    timestamp: '2026-06-03T14:28:00',
+    parsed: false,
+  },
+  {
+    id: 'email-4',
+    sender: 'no-reply@nayapay.com',
+    subject: 'NayaPay Payment Sent',
+    body: 'NayaPay se PKR 533 send kiye gaye to inDrive on 02-Jun-2026.',
+    timestamp: '2026-06-02T11:15:00',
+    parsed: false,
+  },
+  {
+    id: 'email-5',
+    sender: 'alerts@jazzcash.com.pk',
+    subject: 'JazzCash Debit Alert',
+    body: 'JazzCash debit PKR 521 at inDrive 03-Jun-2026 14:28',
+    timestamp: '2026-06-03T14:28:00',
+    parsed: false,
+  },
+  {
+    id: 'email-6',
+    sender: 'alerts@hbl.com',
+    subject: 'HBL Debit Notification',
+    body: 'HBL debit PKR 521 at inDrive 03-Jun-2026 14:30',
+    timestamp: '2026-06-03T14:30:00',
+    parsed: false,
+  },
+  {
+    id: 'email-7',
+    sender: 'alerts@jazzcash.com.pk',
+    subject: 'JazzCash Coffee Purchase',
+    body: 'Your JazzCash account has been debited PKR 450 at Coffee Wagon Gulshan on 05-Jun-2026 at 11:15 AM. Balance: PKR 7,954.',
+    timestamp: '2026-06-05T11:15:00',
+    parsed: false,
+  },
+  {
+    id: 'email-8',
+    sender: 'alerts@nayapay.com',
+    subject: 'NayaPay Transport Payment',
+    body: 'PKR 320 debited from your NayaPay wallet for inDrive ride on 06-Jun-2026. Remaining balance: PKR 4,210.',
+    timestamp: '2026-06-06T09:30:00',
+    parsed: false,
+  },
+];

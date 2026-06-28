@@ -1,0 +1,16 @@
+# Render Blueprint — deploy the AI service from the repo root.
+# Vercel hosts the Next.js app separately; set PARSER_API_URL there to this service URL.
+
+services:
+  - type: web
+    name: youthpay-ai
+    runtime: python
+    rootDir: ai-service
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn youthpay.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.0"
+      - key: GEMINI_API_KEY
+        sync: false

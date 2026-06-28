@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+google-generativeai
+python-multipart
+pydantic
+python-dateutil
+python-dotenv
+pytest
